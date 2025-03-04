@@ -4,7 +4,7 @@
       {
         "src": "school_management_system/wsgi.py",
         "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python" }
+        "config": { "maxLambdaSize": "30mb", "runtime": "python" }
       },
       {
         "src": "build_files.sh",

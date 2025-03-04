@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+   Classes List
+
+    <a href="{% url 'add_class' %}" class="btn btn-primary">Add Class</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>Section</th>
+                <th>Teacher</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cls in classes %}
+                <tr>
+                    <td>{{ cls.name }}</td>
+                    <td>{{ cls.grade }}</td>
+                    <td>{{ cls.section }}</td>
+                    <td>{{ cls.teacher.first_name }} {{ cls.teacher.last_name }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No classes found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

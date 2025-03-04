@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+   Super Admin Dashboard
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>Create New School Tenant</h2>
+    <a href="{% url 'create_school' %}">Create New School</a>
+
+    <h2>School Tenants</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Subdomain</th>
+                <th>Created</th>
+                <th>Actions</th>
+                <th>Templates</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for school in schools %}
+                <tr>
+                    <td>{{ school.name }}</td>
+                    <td>{{ school.tenant.subdomain }}</td>
+                    <td>{{ school.created_at|date:"M d, Y" }}</td>
+                    <td><a href="http://{{ school.tenant.subdomain }}.localhost:8000">Visit</a></td>
+                    <td><a href="{% url 'manage_school_templates' school.pk %}">Manage Templates</a></td>
+                    
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No schools created yet.</td>
+                    
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

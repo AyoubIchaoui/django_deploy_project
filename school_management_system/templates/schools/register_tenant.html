@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="register-container">
+    <h2>Register New School</h2>
+    
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        <h3>School Information</h3>
+        <div class="form-group">
+            <label for="{{ form.name.id_for_label }}">School Name:</label>
+            {{ form.name }}
+            {% if form.name.errors %}
+            <div class="error-message">{{ form.name.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.domain_name.id_for_label }}">Domain Name:</label>
+            {{ form.domain_name }}
+            <small class="form-text text-muted">{{ form.domain_name.help_text }}</small>
+            {% if form.domain_name.errors %}
+            <div class="error-message">{{ form.domain_name.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <h3>Administrator Account</h3>
+        <div class="form-group">
+            <label for="{{ form.admin_email.id_for_label }}">Admin Email:</label>
+            {{ form.admin_email }}
+            {% if form.admin_email.errors %}
+            <div class="error-message">{{ form.admin_email.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.admin_password.id_for_label }}">Password:</label>
+            {{ form.admin_password }}
+            {% if form.admin_password.errors %}
+            <div class="error-message">{{ form.admin_password.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.admin_confirm_password.id_for_label }}">Confirm Password:</label>
+            {{ form.admin_confirm_password }}
+            {% if form.admin_confirm_password.errors %}
+            <div class="error-message">{{ form.admin_confirm_password.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Register School</button>
+        <a href="{% url 'platform_login' %}" class="btn btn-secondary">Back to Login</a>
+    </form>
+</div>
+{% endblock %}

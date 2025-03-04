@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+   Add Teacher
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>Email:</label>
+        {{ form.email }}
+        {% if form.email.errors %}
+            <ul>
+                {% for error in form.email.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Password:</label>
+        {{ form.password }}
+        {% if form.password.errors %}
+            <ul>
+                {% for error in form.password.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>First Name:</label>
+        {{ form.first_name }}
+        {% if form.first_name.errors %}
+            <ul>
+                {% for error in form.first_name.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Last Name:</label>
+        {{ form.last_name }}
+        {% if form.last_name.errors %}
+            <ul>
+                {% for error in form.last_name.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Employee ID:</label>
+        {{ form.employee_id }}
+        {% if form.employee_id.errors %}
+            <ul>
+                {% for error in form.employee_id.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Department:</label>
+        {{ form.department }}
+        {% if form.department.errors %}
+            <ul>
+                {% for error in form.department.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Designation:</label>
+        {{ form.designation }}
+        {% if form.designation.errors %}
+            <ul>
+                {% for error in form.designation.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Qualification:</label>
+        {{ form.qualification }}
+        {% if form.qualification.errors %}
+            <ul>
+                {% for error in form.qualification.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Date of Joining:</label>
+        {{ form.date_of_joining }}
+        {% if form.date_of_joining.errors %}
+            <ul>
+                {% for error in form.date_of_joining.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <button type="submit">Add Teacher</button>
+        <a href="{% url 'teacher_list' %}">Cancel</a>
+    </form>
+{% endblock %}

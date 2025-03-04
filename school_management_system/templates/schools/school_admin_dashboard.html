@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+   {{ school.name }} Dashboard
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>Teachers</h2>
+    <p>Total Teachers: {{ teacher_count }}</p>
+    <a href="{% url 'teacher_list' %}">Manage Teachers</a>
+
+    <h2>Students</h2>
+    <p>Total Students: {{ student_count }}</p>
+    <a href="{% url 'student_list' %}">Manage Students</a>
+
+    <h2>Classes</h2>
+    <p>Total Classes: {{ class_count }}</p>
+    <a href="{% url 'class_list' %}" class="btn btn-primary">Manage Classes</a>
+
+    <h2>Courses</h2>
+    <p>Total Courses: {{ course_count }}</p>
+    <a href="{% url 'course_list' %}" class="btn btn-primary">Manage Courses</a>
+    
+    <h2>School Information</h2>
+    <ul>
+        <li>Name: {{ school.name }}</li>
+        <li>Address: {{ school.address }}</li>
+        <li>Contact Number: {{ school.contact_number }}</li>
+        <li>Domain: {{ request.get_host }}</li>
+        <li>Created At: {{ school.created_at|date:"F d, Y H:i" }}</li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+   Manage Custom Templates for {{ school.name }}
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Custom HTML:</label>
+        {{ form.custom_html }}
+        <br>
+
+        <label>Custom CSS:</label>
+        {{ form.custom_css }}
+        <br>
+
+        <label>Custom JS:</label>
+        {{ form.custom_js }}
+        <br>
+
+        <label>Bootstrap Theme URL:</label>
+        {{ form.bootstrap_theme }}
+        <br>
+
+        <button type="submit">Save Templates</button>
+    </form>
+
+    <a href="{% url 'school_list' %}">Back to School List</a>
+{% endblock %}

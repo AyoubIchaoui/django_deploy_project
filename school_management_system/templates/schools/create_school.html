@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+   Create New School Tenant
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>School Name:</label>
+        {{ form.name }}
+        {% if form.name.errors %}
+            <ul>
+                {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Subdomain:</label>
+        {{ form.subdomain }}
+        <small>{{ form.subdomain.help_text }}</small>
+        {% if form.subdomain.errors %}
+            <ul>
+                {% for error in form.subdomain.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Address:</label>
+        {{ form.address }}
+        {% if form.address.errors %}
+            <ul>
+                {% for error in form.address.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Contact Number:</label>
+        {{ form.contact_number }}
+        {% if form.contact_number.errors %}
+            <ul>
+                {% for error in form.contact_number.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Admin Email:</label>
+        {{ form.admin_email }}
+        {% if form.admin_email.errors %}
+            <ul>
+                {% for error in form.admin_email.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Admin Password:</label>
+        {{ form.admin_password }}
+        {% if form.admin_password.errors %}
+            <ul>
+                {% for error in form.admin_password.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <button type="submit">Create School</button>
+        <a href="{% url 'superadmin_dashboard' %}">Cancel</a>
+    </form>
+{% endblock %}

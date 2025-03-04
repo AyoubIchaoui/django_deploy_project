@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+   {{ school.name }} Details
+
+    <h2>School Information</h2>
+    <ul>
+        <li>Name: {{ school.name }}</li>
+        <li>Address: {{ school.address }}</li>
+        <li>Contact Number: {{ school.contact_number }}</li>
+        <li>Admin Email: {{ school.admin.email }}</li>
+        <li>Created At: {{ school.created_at|date:"F d, Y H:i" }}</li>
+    </ul>
+
+    <a href="{% url 'school_list' %}">Back to School List</a>
+{% endblock %}

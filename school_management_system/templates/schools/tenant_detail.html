@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="tenant-detail-container">
+    <h1>{{ tenant.name }} Details</h1>
+    
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <div class="tenant-info">
+        <h2>Tenant Information</h2>
+        <table class="table">
+            <tr>
+                <th>Name:</th>
+                <td>{{ tenant.name }}</td>
+            </tr>
+            <tr>
+                <th>Domain:</th>
+                <td>{{ tenant.domain_name }}</td>
+            </tr>
+            <tr>
+                <th>Schema:</th>
+                <td>{{ tenant.schema_name }}</td>
+            </tr>
+            <tr>
+                <th>Created:</th>
+                <td>{{ tenant.created_on|date:"F d, Y" }}</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="tenant-schools">
+        <h2>Schools</h2>
+        {% if schools %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for school in schools %}
+                <tr>
+                    <td>{{ school.name }}</td>
+                    <td>{{ school.address }}</td>
+                    <td>{{ school.contact_number }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No schools found.</p>
+        {% endif %}
+    </div>
+    
+    <div class="tenant-users">
+        <h2>Users</h2>
+        {% if users %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>

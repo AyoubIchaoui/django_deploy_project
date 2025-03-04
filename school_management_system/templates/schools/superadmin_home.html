@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+   Superadmin Home Page
+
+    <h2>Welcome, Superadmin</h2>
+
+    <h3>Manage Schools</h3>
+    <a href="{% url 'create_school' %}" class="btn btn-primary">Create New School</a>
+    <a href="{% url 'school_list' %}" class="btn btn-secondary">View All Schools</a>
+
+    <h3>Recent Schools</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Subdomain</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for school in schools %}
+                <tr>
+                    <td>{{ school.name }}</td>
+                    <td>{{ school.tenant.subdomain }}</td>
+                    <td>{{ school.created_at|date:"M d, Y" }}</td>
+                    <td><a href="{% url 'school_detail' pk=school.id %}">View</a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No schools created yet.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

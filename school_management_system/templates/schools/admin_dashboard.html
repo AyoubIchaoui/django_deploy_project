@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1>Super Admin Dashboard</h1>
+    
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <div class="action-buttons">
+        <a href="{% url 'create_school' %}" class="btn btn-primary">Create New School</a>
+        <a href="{% url 'school_list' %}" class="btn btn-secondary">View All Schools</a>
+    </div>
+    
+    <h2>Recent Schools</h2>
+    <div class="school-list">
+        {% if schools %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Admin Email</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for school in schools %}
+                <tr>
+                    <td>{{ school.name }}</td>
+                    <td>{{ school.admin.email }}</td>
+                    <td>{{ school.created_at|date:"M d, Y" }}</td>
+                    <td>
+                        <a href="{% url 'school_detail' school.id %}" class="btn btn-sm btn-info">View</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No schools created yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
